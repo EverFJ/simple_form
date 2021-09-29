@@ -15,7 +15,7 @@ const students = ["Alexandre", "François", "Fatoumata", "Muneeb", "Sofiane S",
 ]
 
 app.get("/students", (req, res) => {
-    res.json(students)
+    res.send(students)
 })
 app.post("/students", (req, res) => {
     console.log(`req.body`, req.body);
