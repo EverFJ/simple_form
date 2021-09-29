@@ -7,15 +7,9 @@ export default function App() {
   const [students, setStudents] = useState([]);
 
   useEffect(() => {
-    fetch("127.0.0.1:8000/students")
-      .then((res) => {
-        console.log(`res`, res);
-        res.json();
-      })
-      .then((data) => {
-        console.log(`data`, data);
-        setStudents(data);
-      });
+    fetch("http://localhost:8000/students")
+      .then((res) => res.json())
+      .then((data) => setStudents(data));
   }, []);
 
   return (
@@ -23,7 +17,7 @@ export default function App() {
       <NavBar />
       <Switch>
         <Route exact path="/">
-          <Home students={students || ["François", "Alexandre", "Fatoumata"]} />
+          <Home students={students} />
         </Route>
       </Switch>
     </BrowserRouter>
