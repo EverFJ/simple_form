@@ -19,7 +19,7 @@ app.get("/students", (req, res) => {
 })
 
 app.post("/students", (req, res) => {
-    console.log(`req.body.student`, req.body.student);
+    // console.log(`req.body.student`, req.body.student);
     if (!students.includes(req.body.student)) {
         students.push(req.body.student);
         res.json(students)

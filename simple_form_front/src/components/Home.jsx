@@ -7,10 +7,12 @@ export default function Home() {
   const [student, setStudent] = useState("");
 
   const handleChange = (e) => {
-    setStudents(e.target.value);
+    setStudent(e.target.value);
   };
 
   const onClick = (students) => {
+    // console.log(`e`, e);
+    // e.preventDefault();
     setStudents(students);
   };
 
@@ -21,13 +23,19 @@ export default function Home() {
   }, []);
 
   return (
-    <div>
-      <StudentList students={students} />
-      <AddStudent
-        student={student}
-        handleChange={handleChange}
-        onClick={onClick}
-      />
+    <div className="container">
+      <div className="row">
+        <div className="col-md-6">
+          <StudentList students={students} />
+        </div>
+        <div className="col-md-6">
+          <AddStudent
+            student={student}
+            handleChange={handleChange}
+            onClick={onClick}
+          />
+        </div>
+      </div>
     </div>
   );
 }
