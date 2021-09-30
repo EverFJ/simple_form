@@ -24,7 +24,7 @@ app.post("/students", (req, res) => {
         students.push(req.body.student);
         res.json(students)
     } else {
-        res.redirect("/error")
+        res.status(500).send("error")
     }
 })
 

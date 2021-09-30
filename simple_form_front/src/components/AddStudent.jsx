@@ -1,11 +1,11 @@
 import React from "react";
 
 export default function AddStudent(props) {
-  const { onClick, handleChange, student } = props;
+  const { onClick, handleChange, showError, student } = props;
+
   return (
     <div>
       <h1 className="text-center">AddStudent</h1>
-      {/* <form> */}
       <div className="form-group row">
         <label className="col-md-4 col-form-label" htmlFor="student">
           Student name
@@ -31,13 +31,13 @@ export default function AddStudent(props) {
             method: "POST",
             body: JSON.stringify({ student: student }),
           })
+            // .then((res) => (res.status === 500 ? res.json() : showError()))
             .then((res) => res.json())
             .then((data) => onClick(data));
         }}
       >
         Send
       </button>
-      {/* </form> */}
     </div>
   );
 }
