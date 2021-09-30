@@ -1,19 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function AddStudent(props) {
+  const { onClick, handleChange, student } = props;
   return (
     <div>
       <h1 className="text-center">AddStudent</h1>
-      <form action="http://127.0.0.1:8000/students" method="post">
+      <form>
         <div className="form-group row">
           <label className="col-md-4 col-form-label" htmlFor="student">
             Student name
           </label>
           <div className="col-md-2">
-            <input className="form-group" type="text" name="student" />
+            <input
+              className="form-group"
+              type="text"
+              name="student"
+              value={student}
+              onChange={handleChange}
+            />
           </div>
         </div>
-        <button className="btn border-primary text-primary" type="submit">
+        <button
+          className="btn border-primary text-primary"
+          onClick={() => {
+            fetch("http://localhost:8000/students", {
+              headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+              },
+              method: "POST",
+              body: student,
+            })
+              .then((res) => res.json())
+              .then((data) => props.onClick(data));
+          }}
+        >
           Send
         </button>
       </form>

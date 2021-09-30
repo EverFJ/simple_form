@@ -17,10 +17,15 @@ const students = ["Alexandre", "François", "Fatoumata", "Muneeb", "Sofiane S",
 app.get("/students", (req, res) => {
     res.json(students)
 })
+
 app.post("/students", (req, res) => {
-    console.log(`req.body`, req.body);
-    students.push(req.body.student);
-    res.json(req.body.student)
+    console.log(`req.body.student`, req.body.student);
+    if (!students.includes(req.body.student)) {
+        students.push(req.body.student);
+        res.json(students)
+    } else {
+        res.redirect("/error")
+    }
 })
 
 
